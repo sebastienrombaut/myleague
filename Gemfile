@@ -10,8 +10,10 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'turbolinks'
 gem 'jbuilder'
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3'

@@ -1,0 +1,11 @@
+<header>
+    <nav class="navbar navbar-dark bg-dark">      
+        <% if player_signed_in? %>
+          <%= link_to current_player.name, root_path%>   
+          <%= link_to "My Leagues", leagues_path %>
+          <%= link_to "Log out", destroy_player_session_path, method: :delete %>   
+        <% else %>
+          <%= link_to "Log in", new_player_session_path %>
+        <% end %>
+    </nav>
+</header>

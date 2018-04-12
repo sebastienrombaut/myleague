@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Hi <%=current_player.name %>, here's your leagues</h2>           
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>League name</th>
+        <th>Sport</th>
+        <th>Number of players</th>
+        <th>Number of games</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @leagues.each do |league|%>
+      <tr>   
+        <% if current_player.leagues.include?(league) %>
+          <td><%= league.name %></td>
+          <td><%= league.sport %></td>
+          <td><%= league.players.count %></td>
+          <td><%= league.matches.count %></td>
+          <td><%= link_to "Show details", league_path(league), class: "btn btn-info" %></td>
+        <% end %>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to "Create new league", new_league_path, class: "btn btn-success" %>
+</div>
