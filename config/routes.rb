@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'display_new_match', on: :member
     post 'new_match', on: :member
     get 'match_history', on: :member
+    get 'leaderboard', on: :member
   end	
 
 end

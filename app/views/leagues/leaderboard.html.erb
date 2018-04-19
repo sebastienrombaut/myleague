@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Leaderboard</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Number of matches</th>
+        <th>Number of victories</th>
+        <th>Number of defeats</th>
+        <th>Ratio</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @players.each do |player| %>
+      <tr>   
+        <td><%= match.created_at %></td>
+        <% if match.winner.id == Player.find(match.player1_id).id && match.winner.id != nil %>
+          <td style='color: #228B22;'><%= Player.find(match.player1_id).name %></td>
+          <td style='color: #DC143C;'><%= Player.find(match.player2_id).name %></td>
+        <% elsif match.winner.id == Player.find(match.player2_id).id && match.winner.id != nil%>
+          <td style='color: #DC143C;'><%= Player.find(match.player1_id).name %></td>
+          <td style='color: #228B22;'><%= Player.find(match.player2_id).name %></td>
+        <% else %>
+          <td style='color: #FFA500;'><%= Player.find(match.player1_id).name %></td>
+          <td style='color: #FFA500;'><%= Player.find(match.player2_id).name %></td>
+        <% end%>
+        <td><%= "#{match.score1}" +' - '+"#{match.score2}" %></td>
+        <td><%= match.comment %></td>
+      <% end %>
+      </tr>
+    </tbody>
+</div>

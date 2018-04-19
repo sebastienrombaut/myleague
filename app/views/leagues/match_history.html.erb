@@ -14,13 +14,21 @@
         <% @matches.each do |match| %>
       <tr>   
         <td><%= match.created_at %></td>
-        <td><%= Player.find(match.player1_id).name %></td>
-        <td><%= Player.find(match.player2_id).name %></td>
-        <td><%= "#{match.score1}" +'-'+"#{match.score2}" %></td>
+        <% if match.winner != nil %>
+          <% if match.winner.id == Player.find(match.player1_id).id %>
+            <td style='color: #228B22;'><%= Player.find(match.player1_id).name %></td>
+            <td style='color: #DC143C;'><%= Player.find(match.player2_id).name %></td>
+          <% else match.winner.id == Player.find(match.player2_id).id %>
+            <td style='color: #DC143C;'><%= Player.find(match.player1_id).name %></td>
+            <td style='color: #228B22;'><%= Player.find(match.player2_id).name %></td>
+          <% end %>
+        <% else %>
+          <td style='color: #FFA500;'><%= Player.find(match.player1_id).name %></td>
+          <td style='color: #FFA500;'><%= Player.find(match.player2_id).name %></td>
+        <% end%>
+        <td><%= "#{match.score1}" +' - '+"#{match.score2}" %></td>
         <td><%= match.comment %></td>
       <% end %>
       </tr>
     </tbody>
-
-
 </div>

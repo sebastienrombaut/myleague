@@ -82,6 +82,10 @@ class LeaguesController < ApplicationController
     @matches = Match.where(league_id: @league.id).recent_sort
   end
 
+  def leaderboard
+    @players = League.find(params[:id]).players
+  end
+
 
   private 
 
