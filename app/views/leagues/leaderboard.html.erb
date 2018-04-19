@@ -11,22 +11,14 @@
       </tr>
     </thead>
     <tbody>
-        <% @players.each do |player| %>
-      <tr>   
-        <td><%= match.created_at %></td>
-        <% if match.winner.id == Player.find(match.player1_id).id && match.winner.id != nil %>
-          <td style='color: #228B22;'><%= Player.find(match.player1_id).name %></td>
-          <td style='color: #DC143C;'><%= Player.find(match.player2_id).name %></td>
-        <% elsif match.winner.id == Player.find(match.player2_id).id && match.winner.id != nil%>
-          <td style='color: #DC143C;'><%= Player.find(match.player1_id).name %></td>
-          <td style='color: #228B22;'><%= Player.find(match.player2_id).name %></td>
-        <% else %>
-          <td style='color: #FFA500;'><%= Player.find(match.player1_id).name %></td>
-          <td style='color: #FFA500;'><%= Player.find(match.player2_id).name %></td>
-        <% end%>
-        <td><%= "#{match.score1}" +' - '+"#{match.score2}" %></td>
-        <td><%= match.comment %></td>
-      <% end %>
-      </tr>
+      <% @players.each do |player| %>
+        <tr>   
+          <td><%= player.name %></td>
+          <td><%= player.matches.where(league_id: @league.id).count %></td>
+          <td><%= player.total_victories_for_a_league(@league.id) %></td>
+          <td><%= player.total_defeats_for_a_league(@league.id) %></td>
+          <td><%= player.ratio_calculation_for_a_league(@league.id) %> %</td>
+        </tr>
+      <% end %>     
     </tbody>
 </div>

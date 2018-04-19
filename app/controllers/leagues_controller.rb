@@ -83,7 +83,8 @@ class LeaguesController < ApplicationController
   end
 
   def leaderboard
-    @players = League.find(params[:id]).players
+    @league = League.find(params[:id])
+    @players = @league.players
   end
 
 
