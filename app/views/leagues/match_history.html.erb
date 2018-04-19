@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>The Game history</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>First Player</th>
+        <th>Second Player</th>
+        <th>Score</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @matches.each do |match| %>
+      <tr>   
+        <td><%= match.created_at %></td>
+        <td><%= Player.find(match.player1_id).name %></td>
+        <td><%= Player.find(match.player2_id).name %></td>
+        <td><%= "#{match.score1}" +'-'+"#{match.score2}" %></td>
+        <td><%= match.comment %></td>
+      <% end %>
+      </tr>
+    </tbody>
+
+
+</div>

@@ -5,7 +5,7 @@ class Player < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :leagues
 
-  validates :name, presence: true, length: { minimum: 2 }
+  validates :name, presence: true, length: { minimum: 2 }, :uniqueness => {:case_sensitive => false}
 
   def matches
   	return Match.where(player1_id: self.id).or(Match.where(player2_id: self.id))

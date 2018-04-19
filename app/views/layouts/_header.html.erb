@@ -1,11 +1,41 @@
 <header>
-    <nav class="navbar navbar-dark bg-dark">      
-        <% if player_signed_in? %>
-          <%= link_to current_player.name, root_path%>   
-          <%= link_to "My Leagues", leagues_path %>
-          <%= link_to "Log out", destroy_player_session_path, method: :delete %>   
-        <% else %>
-          <%= link_to "Log in", new_player_session_path %>
-        <% end %>
-    </nav>
+  <nav class="navbar navbar-expand-md" style="background-color: black;">
+    <% if player_signed_in? %>
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <%= link_to root_path, class: 'header' do%>
+                Hi <%=current_player.name%>
+                <% end %>
+            </li>
+        </ul>
+    </div>
+    <div class="mx-auto order-0">
+        <%= image_tag("logo.png", :class => "logo", style: 'height:50px;width:auto;')%>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <%= link_to "My Leagues", leagues_path, class: 'header' %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Log out", destroy_player_session_path, method: :delete, class: 'header' %>  
+            </li>
+        </ul>
+    </div>
+    <% else %>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            
+            <li class="nav-item">
+                <%= link_to "Log in", new_player_session_path, class: 'header' %>
+            </li>
+        </ul>
+    </div>
+    <% end %>
+
+  </nav>
 </header>

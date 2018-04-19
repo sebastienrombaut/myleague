@@ -1,0 +1,15 @@
+<div class="container">
+ <h2>Create a new match</h2>
+ <% @tab_name = [] %>
+  <% @league.players.each do |player| %>
+    <% @tab_name << player.name %>
+  <% end %>
+ <%= form_tag(new_match_league_path) do |f|%>
+    Select first player <%= select_tag :player1_chosen, options_for_select(@tab_name)%></br>
+    Select second player<%= select_tag :player2_chosen, options_for_select(@tab_name)%>
+    </br>Enter score first player <%= number_field_tag :score1 %>
+    </br>Enter score first player <%= number_field_tag :score2 %>
+	</br>Enter comment about the match <%= text_area_tag "comment"%>
+    <%= submit_tag "Create this match", class: "btn btn-primary" %>
+  <% end %>
+</div>

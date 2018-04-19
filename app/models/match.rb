@@ -1,5 +1,7 @@
 class Match < ApplicationRecord
   belongs_to :league
+
+  scope :recent_sort, -> { order(created_at: :desc) }
   
   def player(id)
   	return Player.find(id)
