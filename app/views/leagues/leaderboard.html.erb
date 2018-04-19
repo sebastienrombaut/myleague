@@ -1,4 +1,7 @@
 <div class="container">
+  <% if @players == [] %>
+    <h2>No leaderboard yet, please add matches first !</h2>
+  <% else %>
   <h2>Leaderboard</h2>
   <table class="table table-striped">
     <thead>
@@ -21,4 +24,5 @@
         </tr>
       <% end %>     
     </tbody>
+    <% end %>
 </div>
