@@ -72,7 +72,7 @@ class LeaguesController < ApplicationController
       flash[:success] = "You have successfully created a match :)"
     redirect_to @league
     else
-      flash[:error] = 'Your match has not been created'
+      flash[:error] = 'Your match has not been created, because #{@match.errors.full_messages}'
     redirect_to display_new_match_league_path
     end
   end

@@ -77,7 +77,9 @@ class Player < ApplicationRecord
   end
 
   def ratio_calculation_for_a_league(league_id)
-    self.total_victories_for_a_league(league_id)*100/self.matches.where(league_id: league_id).count
+    unless (self.matches.where(league_id: league_id).count == 0)
+    (self.total_victories_for_a_league(league_id)*100) / (self.matches.where(league_id: league_id).count)
+    end
   end
 
 end

@@ -1,8 +1,16 @@
 class Match < ApplicationRecord
   belongs_to :league
+  
+  validate :check_player1_player2_are_different
+
+  validates :player1_id, :player2_id, :score1, :score2, presence: true, :numericality => {:only_integer => true}
 
   scope :recent_sort, -> { order(created_at: :desc) }
   
+  def check_player1_player2_are_different
+    errors.add(:player1_id, "the players must be different") if self.player1_id == self.player2_id
+  end
+
   def player(id)
   	return Player.find(id)
   end
