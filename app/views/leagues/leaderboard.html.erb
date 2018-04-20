@@ -1,6 +1,7 @@
 <div class="container">
-  <% if @players == [] %>
+  <% if @players == [] || @league.matches == [] %>
     <h2>No leaderboard yet, please add matches first !</h2>
+    <p><%= link_to 'New match', display_new_match_league_path, class: 'btn btn-primary' %></p></br>
   <% else %>
   <h2>Leaderboard</h2>
   <table class="table table-striped">
