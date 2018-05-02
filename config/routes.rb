@@ -7,15 +7,19 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   resources :players, only: [:show]
-  
-  resources :leagues do
-    get 'show_players', on: :member
-    get 'display_players', on: :member
-    post 'add_players', on: :member
-    get 'display_new_match', on: :member
-    post 'new_match', on: :member
-    get 'match_history', on: :member
-    get 'leaderboard', on: :member
-  end	
 
+  resources :leagues do
+
+    member do
+      get 'joueurs', to: 'leagues#show_players', as: 'players'
+      get 'display_players'
+      post 'add_players'
+      get 'display_new_match'
+      post 'new_match'
+      get 'match_history'
+      get 'leaderboard'
+    end 
+    
+
+  end 
 end

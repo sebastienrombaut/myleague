@@ -1,6 +1,6 @@
 <div class='container'>
 	<h2>Here's league : <%=@league.name%></h2>
-	<p><%= link_to 'Show the players', show_players_league_path(@league), class: 'btn btn-primary' %></p></br>
+	<p><%= link_to 'Show the players', players_league_path(@league), class: 'btn btn-primary' %></p></br>
 	<p><%= link_to 'Add players', display_players_league_path(@league), class: 'btn btn-primary' %></p></br>
 	<p><%= link_to 'New match', display_new_match_league_path, class: 'btn btn-primary' %></p></br>
 	<p><%= link_to 'History', match_history_league_path, class: 'btn btn-primary' %></p></br>

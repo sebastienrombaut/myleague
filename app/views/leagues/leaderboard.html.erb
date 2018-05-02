@@ -15,13 +15,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @players.each do |player| %>
+      <% @ratios.each do |player, ratio| %>
         <tr>   
-          <td><%= player.name %></td>
-          <td><%= player.matches.where(league_id: @league.id).count %></td>
-          <td><%= player.total_victories_for_a_league(@league.id) %></td>
-          <td><%= player.total_defeats_for_a_league(@league.id) %></td>
-          <td><%= player.ratio_calculation_for_a_league(@league.id) %> %</td>
+          <td><%= Player.find(player.to_s.to_i).name %></td>
+          <td><%= Player.find(player.to_s.to_i).matches.where(league_id: @league.id).count %></td>
+          <td><%= Player.find(player.to_s.to_i).total_victories_for_a_league(@league.id) %></td>
+          <td><%= Player.find(player.to_s.to_i).total_defeats_for_a_league(@league.id) %></td>
+          <td><%= ratio %> %</td>
         </tr>
       <% end %>     
     </tbody>

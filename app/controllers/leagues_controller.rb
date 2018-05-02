@@ -1,5 +1,7 @@
 class LeaguesController < ApplicationController
   before_action :authenticate_player!
+  before_action :set_league, only: [:show_players, :show, :display_players, :add_players, :display_new_match, :new_match, :match_history, :leaderboard]
+
 
   def index
   	@leagues = League.all
@@ -29,21 +31,21 @@ class LeaguesController < ApplicationController
 
 
   def show
-    @league = League.find(params[:id])
+    
   end
 
   def show_players
-    @league = League.find(params[:id])
+    
     @players = @league.players
   end
 
   def display_players
-    @league = League.find(params[:id])
+    
     @players = @league.players
   end
 
   def add_players
-    @league = League.find(params[:id])
+    
     @players = @league.players
     @player_chosen = Player.find_by(name: params[:player_chosen])
     @players << @player_chosen
@@ -52,13 +54,13 @@ class LeaguesController < ApplicationController
   end
 
   def display_new_match
-    @league = League.find(params[:id])
+    
     @match = Match.new
 
   end
 
   def new_match
-    @league = League.find(params[:id])
+    
     @match = Match.new
     @match.league_id = @league.id
     @player1 = Player.find_by(name: params[:player1_chosen])
@@ -78,13 +80,13 @@ class LeaguesController < ApplicationController
   end
 
   def match_history
-    @league = League.find(params[:id])
+    
     @matches = Match.where(league_id: @league.id).recent_sort
   end
 
   def leaderboard
-    @league = League.find(params[:id])
     @players = @league.players
+    @ratios = Player.array_of_ratios(@players, @league)
   end
 
 
@@ -93,4 +95,9 @@ class LeaguesController < ApplicationController
   def league_params
     params.require(:league).permit(:name, :sport)
   end
+
+  def set_league
+    @league = League.find(params[:id])
+  end
+
 end

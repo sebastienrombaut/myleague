@@ -78,8 +78,17 @@ class Player < ApplicationRecord
 
   def ratio_calculation_for_a_league(league_id)
     unless (self.matches.where(league_id: league_id).count == 0)
-    (self.total_victories_for_a_league(league_id)*100) / (self.matches.where(league_id: league_id).count)
+      ratio = (self.total_victories_for_a_league(league_id)*100) / (self.matches.where(league_id: league_id).count)
     end
+    return ratio.to_f
+  end
+
+  def self.array_of_ratios(players, league)
+    @ratios = {}
+    players.find_each do |player|
+      @ratios[player.id.to_s.to_sym] = player.ratio_calculation_for_a_league(league)
+    end
+    return @ratios.sort_by{|key, value| value}.reverse.to_h
   end
 
 end
