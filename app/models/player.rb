@@ -1,14 +1,10 @@
 class Player < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :leagues
 
   validates :name, presence: true, length: { minimum: 2 }, :uniqueness => {:case_sensitive => false}
 
   def matches
-  	return Match.where(player1_id: self.id).or(Match.where(player2_id: self.id))
+    return Match.where(player1_id: self.id).or(Match.where(player2_id: self.id))
   end
 
 
@@ -22,7 +18,7 @@ class Player < ApplicationRecord
       if match.winner == self
       	i +=1
       end
-    end 
+    end
   return i
   end
 
@@ -32,7 +28,7 @@ class Player < ApplicationRecord
       if match.winner == self
         i +=1
       end
-    end 
+    end
   return i
   end
 
@@ -52,7 +48,7 @@ class Player < ApplicationRecord
       if match.loser == self
         i +=1
       end
-    end 
+    end
   return i
   end
 

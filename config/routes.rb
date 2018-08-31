@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
   get 'players/show'
-
-  devise_for :players
 
   root 'static_pages#home'
 
   resources :players, only: [:show]
 
   resources :leagues do
-
     member do
       get 'joueurs', to: 'leagues#show_players', as: 'players'
       get 'display_players'
@@ -18,8 +16,6 @@ Rails.application.routes.draw do
       post 'new_match'
       get 'match_history'
       get 'leaderboard'
-    end 
-    
-
-  end 
+    end
+  end
 end

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :player do
+  factory :admin do
     name "MyString"
   end
 end

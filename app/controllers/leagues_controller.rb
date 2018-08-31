@@ -1,10 +1,10 @@
 class LeaguesController < ApplicationController
-  before_action :authenticate_player!
+  before_action :authenticate_admin!
   before_action :set_league, only: [:show_players, :show, :display_players, :add_players, :display_new_match, :new_match, :match_history, :leaderboard]
 
 
   def index
-  	@leagues = League.all
+    @leagues = League.all
   end
 
   def edit
@@ -18,9 +18,8 @@ class LeaguesController < ApplicationController
     @league = League.new(league_params)
     @league.name = params[:league][:name]
     @league.sport = params[:league][:sport]
-    @league.players << current_player
 
-    if @league.save 
+    if @league.save
       flash[:success] = "You have successfully created a league :)"
       redirect_to @league
     else
@@ -31,21 +30,17 @@ class LeaguesController < ApplicationController
 
 
   def show
-    
   end
 
   def show_players
-    
     @players = @league.players
   end
 
   def display_players
-    
     @players = @league.players
   end
 
   def add_players
-    
     @players = @league.players
     @player_chosen = Player.find_by(name: params[:player_chosen])
     @players << @player_chosen
@@ -54,13 +49,10 @@ class LeaguesController < ApplicationController
   end
 
   def display_new_match
-    
     @match = Match.new
-
   end
 
   def new_match
-    
     @match = Match.new
     @match.league_id = @league.id
     @player1 = Player.find_by(name: params[:player1_chosen])
@@ -80,7 +72,6 @@ class LeaguesController < ApplicationController
   end
 
   def match_history
-    
     @matches = Match.where(league_id: @league.id).recent_sort
   end
 
@@ -90,7 +81,7 @@ class LeaguesController < ApplicationController
   end
 
 
-  private 
+  private
 
   def league_params
     params.require(:league).permit(:name, :sport)
