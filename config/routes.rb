@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
-  get 'players/show'
-
   root 'static_pages#home'
 
+  # DEVISE
+  devise_for :admins
+
+  # SPECIFIC
+  get 'players/show'
+
+  # RESOURCES
   resources :players, only: [:show]
 
   resources :leagues do
