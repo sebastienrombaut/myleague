@@ -1,22 +1,27 @@
 class Player < ApplicationRecord
-  has_and_belongs_to_many :leagues
+  belongs_to :league
 
-  validates :name, presence: true, length: { minimum: 2 }, :uniqueness => {:case_sensitive => false}
+  validate :forbid_two_same_names_in_a_league
+
+  validates :name, presence: true, length: { minimum: 2 }
 
   def matches
     return Match.where(player1_id: self.id).or(Match.where(player2_id: self.id))
   end
 
-
-#  def leagues
-#  	return League.where(id: )
-#  end
+  def forbid_two_same_names_in_a_league
+    Player.find_each do |player|
+      if self.name == player.name && self.league_id == player.league_id
+        errors.add(:name, "is already taken for this league")
+      end
+    end
+  end
 
   def total_victories
-  	i = 0
-  	self.matches.each do |match|
+    i = 0
+    self.matches.each do |match|
       if match.winner == self
-      	i +=1
+        i +=1
       end
     end
   return i
@@ -33,12 +38,12 @@ class Player < ApplicationRecord
   end
 
   def total_defeats
-  	j = 0
-  	self.matches.each do |match|
-  		if match.loser == self
-  		  j +=1
-  		end
-  	end
+    j = 0
+    self.matches.each do |match|
+      if match.loser == self
+        j +=1
+      end
+    end
   return j
   end
 
@@ -56,7 +61,7 @@ class Player < ApplicationRecord
     k = 0
     self.matches.each do |match|
       if match.tie == true
-      	k += 1
+        k += 1
       end
     end
   return k
@@ -86,5 +91,4 @@ class Player < ApplicationRecord
     end
     return @ratios.sort_by{|key, value| value}.reverse.to_h
   end
-
 end

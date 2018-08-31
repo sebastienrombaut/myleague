@@ -15,7 +15,7 @@
 
 FactoryBot.define do
   factory :match do
-    league nil
+    league_id { League.first }
     score1 1
     score2 1
   end

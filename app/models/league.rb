@@ -10,7 +10,10 @@
 #
 
 class League < ApplicationRecord
-  has_and_belongs_to_many :players
+  has_many :admin_leagues, dependent: :destroy
+  has_many :admins, through: :admin_leagues
+  has_many :matches, dependent: :destroy
+  has_many :players, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 2 }
   validates :sport, presence: true, length: { minimum: 2 }

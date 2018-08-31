@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180624162256) do
+ActiveRecord::Schema.define(version: 20180831124036) do
+
+  create_table "admin_leagues", force: :cascade do |t|
+    t.integer "admin_id"
+    t.integer "league_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_admin_leagues_on_admin_id"
+    t.index ["league_id"], name: "index_admin_leagues_on_league_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "name"
@@ -37,11 +46,6 @@ ActiveRecord::Schema.define(version: 20180624162256) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "leagues_players", id: false, force: :cascade do |t|
-    t.integer "league_id", null: false
-    t.integer "player_id", null: false
-  end
-
   create_table "matches", force: :cascade do |t|
     t.integer "league_id"
     t.string "comment"
@@ -59,6 +63,8 @@ ActiveRecord::Schema.define(version: 20180624162256) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.integer "league_id"
+    t.index ["league_id"], name: "index_players_on_league_id"
   end
 
 end
