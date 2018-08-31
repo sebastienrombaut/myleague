@@ -6,12 +6,12 @@ class Player < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2 }
 
   def matches
-    return Match.where(player1_id: self.id).or(Match.where(player2_id: self.id))
+    Match.where(player1_id: id).or(Match.where(player2_id: id))
   end
 
   def forbid_two_same_names_in_a_league
     Player.find_each do |player|
-      if self.name == player.name && self.league_id == player.league_id
+      if name == player.name && league_id == player.league_id
         errors.add(:name, "is already taken for this league")
       end
     end
@@ -19,69 +19,69 @@ class Player < ApplicationRecord
 
   def total_victories
     i = 0
-    self.matches.each do |match|
+    matches.each do |match|
       if match.winner == self
-        i +=1
+        i += 1
       end
     end
-  return i
+    i
   end
 
   def total_victories_for_a_league(league_id)
     i = 0
-    self.matches.where(league_id: league_id).each do |match|
+    matches.where(league_id: league_id).find_each do |match|
       if match.winner == self
-        i +=1
+        i += 1
       end
     end
-  return i
+    i
   end
 
   def total_defeats
     j = 0
-    self.matches.each do |match|
+    matches.each do |match|
       if match.loser == self
-        j +=1
+        j += 1
       end
     end
-  return j
+    j
   end
 
   def total_defeats_for_a_league(league_id)
     i = 0
-    self.matches.where(league_id: league_id).each do |match|
+    matches.where(league_id: league_id).find_each do |match|
       if match.loser == self
-        i +=1
+        i += 1
       end
     end
-  return i
+    i
   end
 
   def total_draws
     k = 0
-    self.matches.each do |match|
+    matches.each do |match|
       if match.tie == true
         k += 1
       end
     end
-  return k
+    k
   end
 
   def total_draws_for_a_league(league_id)
     k = 0
-    self.matches.where(league_id: league_id).each do |match|
+    matches.where(league_id: league_id).find_each do |match|
       if match.tie == true
         k += 1
       end
     end
-  return k
+    k
   end
 
   def ratio_calculation_for_a_league(league_id)
-    unless (self.matches.where(league_id: league_id).count == 0)
-      ratio = (self.total_victories_for_a_league(league_id)*100) / (self.matches.where(league_id: league_id).count)
+    unless matches.where(league_id: league_id).count == 0
+      ratio = (total_victories_for_a_league(league_id) * 100) / matches.where(league_id: league_id).count
     end
-    return ratio.to_f
+    ratio.to_f
   end
 
   def self.array_of_ratios(players, league)
@@ -89,6 +89,6 @@ class Player < ApplicationRecord
     players.find_each do |player|
       @ratios[player.id.to_s.to_sym] = player.ratio_calculation_for_a_league(league)
     end
-    return @ratios.sort_by{|key, value| value}.reverse.to_h
+    @ratios.sort_by{ |_key, value| value }.reverse.to_h
   end
 end

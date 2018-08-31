@@ -1,14 +1,12 @@
 class LeaguesController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_league, only: [:show_players, :show, :display_players, :add_players, :display_new_match, :new_match, :match_history, :leaderboard]
-
+  before_action :set_league, only: %i[show_players show display_players add_players display_new_match new_match match_history leaderboard]
 
   def index
     @leagues = League.all
   end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @league = League.new
@@ -28,9 +26,7 @@ class LeaguesController < ApplicationController
     end
   end
 
-
-  def show
-  end
+  def show; end
 
   def show_players
     @players = @league.players
@@ -64,10 +60,10 @@ class LeaguesController < ApplicationController
     @match.comment = params[:comment]
     if @match.save
       flash[:success] = "You have successfully created a match :)"
-    redirect_to @league
+      redirect_to @league
     else
       flash[:error] = 'Your match has not been created, because #{@match.errors.full_messages}'
-    redirect_to display_new_match_league_path
+      redirect_to display_new_match_league_path
     end
   end
 
@@ -80,7 +76,6 @@ class LeaguesController < ApplicationController
     @ratios = Player.array_of_ratios(@players, @league)
   end
 
-
   private
 
   def league_params
@@ -90,5 +85,4 @@ class LeaguesController < ApplicationController
   def set_league
     @league = League.find(params[:id])
   end
-
 end

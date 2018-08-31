@@ -19,11 +19,10 @@ class League < ApplicationRecord
   validates :sport, presence: true, length: { minimum: 2 }
 
   def player(id)
-    return Player.find(id)
+    Player.find(id)
   end
 
   def matches
-    return Match.where(league_id: self.id)
+    Match.where(league_id: id)
   end
-
 end

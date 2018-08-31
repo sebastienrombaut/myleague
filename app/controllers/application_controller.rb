@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
-  def stored_location_for(resource)
+  def stored_location_for(_admin)
     nil
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_admin)
     root_path
   end
 end
