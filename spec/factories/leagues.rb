@@ -11,6 +11,7 @@
 
 FactoryBot.define do
   factory :league do
-    name "MyString"
+    name "First League"
+    sport "Football"
   end
 end
