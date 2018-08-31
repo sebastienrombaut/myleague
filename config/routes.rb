@@ -2,10 +2,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   # DEVISE
-  devise_for :admins
-
-  # SPECIFIC
-  get 'players/show'
+  devise_for :admins, path: "admin"
 
   # RESOURCES
   resources :players, only: [:show]

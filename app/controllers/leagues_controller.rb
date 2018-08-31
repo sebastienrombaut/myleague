@@ -1,9 +1,9 @@
 class LeaguesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: %i[match_history leaderboard show]
   before_action :set_league, only: %i[show_players show display_players add_players display_new_match new_match match_history leaderboard]
 
   def index
-    @leagues = League.all
+    @leagues = current_admin.leagues
   end
 
   def edit; end
@@ -16,6 +16,7 @@ class LeaguesController < ApplicationController
     @league = League.new(league_params)
     @league.name = params[:league][:name]
     @league.sport = params[:league][:sport]
+    @league.admins << current_admin
 
     if @league.save
       flash[:success] = "You have successfully created a league :)"
@@ -37,11 +38,13 @@ class LeaguesController < ApplicationController
   end
 
   def add_players
-    @players = @league.players
-    @player_chosen = Player.find_by(name: params[:player_chosen])
-    @players << @player_chosen
-    flash[:success] = "You have successfully added this #{@player_chosen.name} to #{@league.name} :)"
-    redirect_to @league
+    if Player.create(name: params[:name], league_id: @league.id)
+      flash[:success] = "You have successfully added this #{params[:name]} to #{@league.name} :)"
+      redirect_to @league
+    else
+      flash[:error] = 'Your player has not been created'
+      redirect_to display_players_league_path
+    end
   end
 
   def display_new_match
@@ -58,6 +61,7 @@ class LeaguesController < ApplicationController
     @match.score1 = params[:score1]
     @match.score2 = params[:score2]
     @match.comment = params[:comment]
+
     if @match.save
       flash[:success] = "You have successfully created a match :)"
       redirect_to @league
@@ -83,6 +87,6 @@ class LeaguesController < ApplicationController
   end
 
   def set_league
-    @league = League.find(params[:id])
+    @league = League.find_by(name: params[:id])
   end
 end

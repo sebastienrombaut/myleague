@@ -1,13 +1,9 @@
 <div class='container'>
   <h2>Who would you like to add ? </h2>
-    <% @player_possible = Player.all - @players %>
-    <% @tab_name = [] %>
-    <% @player_possible.each do |player| %>
-      <% @tab_name << player.name %>
-    <% end %>
-
-    <%= form_tag(add_players_league_path) do |f|%>
-        <%= select_tag :player_chosen, options_for_select(@tab_name)%>
+    <%= form_tag add_players_league_path do |f|%>
+        <div class = "form-group">
+          <%=text_field_tag :name, nil, { placeholder: "Player's name", class: 'form-control' }%>
+        </div>
         <%= submit_tag "Add this player", class: "btn btn-primary" %>
     <% end %>
 </div>

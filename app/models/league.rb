@@ -15,8 +15,12 @@ class League < ApplicationRecord
   has_many :matches, dependent: :destroy
   has_many :players, dependent: :destroy
 
-  validates :name, presence: true, length: { minimum: 2 }
+  validates :name, presence: true, length: { minimum: 2 }, uniqueness: true
   validates :sport, presence: true, length: { minimum: 2 }
+
+  def to_param
+    name
+  end
 
   def player(id)
     Player.find(id)
