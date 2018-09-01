@@ -58,10 +58,10 @@ h1 {
     background-size: contain;
     background-position: left;
     color: white;
-     background: 
-    /* top, transparent red, faked with gradient */ 
+     background:
+    /* top, transparent red, faked with gradient */
     linear-gradient(
-      rgba(0, 0, 0, 0.1), 
+      rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.9)
     ),
     /* bottom, image */
@@ -70,7 +70,7 @@ h1 {
   background-position: center bottom;
   background-size: cover;
   overflow: hidden;
-	} 
+	}
 
 #top p {
 	font-size: 120%;
@@ -109,13 +109,13 @@ input {
   border: none;
   max-width: 300px;
   font-size: 100%;
-  
+
 
 	&:hover {
 		transition: all 0.3s ease;
 		background: #302b63;
 	}
-  
+
 
 }
 
@@ -239,12 +239,12 @@ input {
   top: 0px;
   left: 0;
   margin: 0;
-  
-  
-  background: 
-    /* top, transparent red, faked with gradient */ 
+
+
+  background:
+    /* top, transparent red, faked with gradient */
     linear-gradient(
-      rgba(142, 14, 0, 0.7), 
+      rgba(142, 14, 0, 0.7),
       rgba(142, 14, 0, 0.1)
     ),
     /* bottom, image */
@@ -275,7 +275,8 @@ background-position: center bottom;
 #icon_league1, #icon_league2, #icon_league3, #icon_league4, #icon_league5 {
 	padding: 4px;
 	color: black;
-} 
+	font-size: 2em;
+}
 
 
 /*footer */
@@ -296,3 +297,4 @@ height: 40px;
 .foot p {
 		margin: auto;
 }
+
