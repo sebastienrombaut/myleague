@@ -3,9 +3,22 @@
     <h2>Here's league : <%=@league.name%></h2>
     <p><%= link_to 'My leagues', leagues_path, class: 'btn btn-primary' %></p></br>
   <% else %>
-    <%= link_to match_history_league_path(@league) do %>
-    <i class="fas fa-history" data-toggle="tooltip" data-placement="top" title="History" id='icon_league4'></i><%end%>
-    <%= link_to leaderboard_league_path(@league) do %>
-    <i class="fas fa-trophy" data-toggle="tooltip" data-placement="top" title="Leaderboard" id='icon_league3'></i><%end%>
+    <div class="row">
+      <div class="col-6">
+        <%= link_to match_history_league_path(@league) do %>
+        <i class="fas fa-history" data-toggle="tooltip" data-placement="top" title="History" id='icon_league4' style="font-size: 10em;"></i><%end%>
+      </div>
+      <div class="col-6">
+        <%= link_to leaderboard_league_path(@league) do %>
+        <i class="fas fa-trophy" data-toggle="tooltip" data-placement="top" title="Leaderboard" id='icon_league3' style="font-size: 10em;"></i><%end%>
+      </div>
+    </div>
   <% end %>
+
+<!--   <div class="row">
+    <div class="col-6 col-lg-3 bg-danger order-1 order-md-2" style="height: 200px;">
+    </div>
+    <div class="col-6 col-lg-3 bg-warning order-2 order-md-1" style="height: 200px;">
+    </div>
+  </div> -->
 </div>

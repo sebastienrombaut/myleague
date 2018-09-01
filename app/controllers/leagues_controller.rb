@@ -38,7 +38,9 @@ class LeaguesController < ApplicationController
   end
 
   def add_players
-    if Player.create(name: params[:name], league_id: @league.id)
+    @player = Player.new(name: params[:name], league_id: @league.id)
+
+    if @player.save
       flash[:success] = "You have successfully added this #{params[:name]} to #{@league.name} :)"
       redirect_to @league
     else
