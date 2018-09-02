@@ -9,7 +9,7 @@
     Select second player<%= select_tag :player2_chosen, options_for_select(@tab_name)%>
     </br>Enter score first player <%= number_field_tag :score1 %>
     </br>Enter score first player <%= number_field_tag :score2 %>
-	</br>Enter comment about the match <%= text_area_tag "comment"%>
-    <%= submit_tag "Create this match", class: "btn btn-primary" %>
+    </br>Any comments about the match ?<%= text_area_tag :comment %>
+    </br><%= submit_tag "Create this match", class: "btn btn-primary", style: 'size: 100*10' %>
   <% end %>
 </div>
