@@ -56,9 +56,9 @@ class LeaguesController < ApplicationController
   def new_match
     @match = Match.new
     @match.league_id = @league.id
-    @player1 = Player.find_by(name: params[:player1_chosen])
+    @player1 = @league.players.find_by(name: params[:player1_chosen])
     @match.player1_id = @player1.id
-    @player2 = Player.find_by(name: params[:player2_chosen])
+    @player2 = @league.players.find_by(name: params[:player2_chosen])
     @match.player2_id = @player2.id
     @match.score1 = params[:score1]
     @match.score2 = params[:score2]
