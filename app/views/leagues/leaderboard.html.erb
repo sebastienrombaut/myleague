@@ -8,22 +8,22 @@
     <thead>
       <tr>
         <th>Player</th>
-        <th>Number of matches</th>
-        <th>Number of victories</th>
-        <th>Number of defeats</th>
+        <th>Played</th>
+        <th>Wins</th>
+        <th>Losses</th>
         <th>Ratio</th>
       </tr>
     </thead>
     <tbody>
       <% @ratios.each do |player, ratio| %>
-        <tr>   
+        <tr>
           <td><%= Player.find(player.to_s.to_i).name %></td>
           <td><%= Player.find(player.to_s.to_i).matches.where(league_id: @league.id).count %></td>
           <td><%= Player.find(player.to_s.to_i).total_victories_for_a_league(@league.id) %></td>
           <td><%= Player.find(player.to_s.to_i).total_defeats_for_a_league(@league.id) %></td>
           <td><%= ratio %> %</td>
         </tr>
-      <% end %>     
+      <% end %>
     </tbody>
     <% end %>
 </div>

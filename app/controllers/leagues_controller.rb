@@ -1,6 +1,6 @@
 class LeaguesController < ApplicationController
   before_action :authenticate_admin!, except: %i[match_history leaderboard show]
-  before_action :set_league, only: %i[show_players show display_players add_players display_new_match new_match match_history leaderboard]
+  before_action :set_league, only: %i[show_players show display_players add_players display_new_match new_match match_history leaderboard index]
 
   def index
     @leagues = current_admin.leagues
@@ -44,7 +44,7 @@ class LeaguesController < ApplicationController
       flash[:success] = "You have successfully added this #{params[:name]} to #{@league.name} :)"
       redirect_to @league
     else
-      flash[:error] = 'Your player has not been created'
+      flash[:error] = 'Your player has not been created, this name is not correct'
       redirect_to display_players_league_path
     end
   end

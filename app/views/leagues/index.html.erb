@@ -13,7 +13,10 @@
     <tbody>
       <% @leagues.each do |league|%>
       <tr>
-        <td><%= league.name %></td>
+        <td><%= link_to league_path(league) do %>
+          <%= league.name %>
+          <% end %>
+        </td>
         <td><%= league.sport %></td>
         <td><%= league.players.count %></td>
         <td><%= league.matches.count %></td>
@@ -32,5 +35,13 @@
       </tr>
     </tbody>
   </table>
-  <%= link_to "Create new league", new_league_path, class: "btn btn-success" %>
+    <div class="row justify-content-center text-center">
+      <div class="col-10">
+        <%= link_to new_league_path do %>
+        <div class="option_to_choose">
+          Create new league
+        </div>
+        <%end%>
+      </div>
+    </div>
 </div>
