@@ -17,7 +17,7 @@
 @import "bootstrap";
 
 body {
-	font-family: sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
 
 html,body {
@@ -25,13 +25,14 @@ html,body {
 }
 
 .option_to_choose {
-	border: 1px solid black;
 	font-size: 30px;
 	margin: 5px;
 	padding: 2px;
 	color: black;
-	border-radius: 20px;
-	background-color: #e7e7e7;
+	border-radius: 10px;
+	background-color: #202529;
+	color: white;
+	box-shadow: 2px 2px #888888;
 }
 
 a:hover, a:visited, a:link, a:active {
@@ -71,7 +72,7 @@ h1 {
 
 
 #top {
-	background-color: black;
+	background-color: #202529;
     background-size: contain;
     background-position: left;
     color: white;
