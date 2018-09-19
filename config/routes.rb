@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   devise_for :admins, path: "admin"
 
   # RESOURCES
-  resources :players, only: [:show]
   resources :leagues do
     resources :matches, only: [:edit, :update]
+    resources :players, only: [:edit, :update]
     member do
       get 'joueurs', to: 'leagues#show_players', as: 'players'
       get 'display_players'

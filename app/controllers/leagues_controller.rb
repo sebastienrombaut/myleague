@@ -82,50 +82,10 @@ class LeaguesController < ApplicationController
     @ratios = Player.array_of_ratios(@players, @league)
   end
 
-  def edit_player
-    @player = Player.find(params[:id])
-  end
-
-  def update_player
-    @player = Player.find(params[:id])
-
-    if @player.update(name: params[:name])
-      flash[:success] = "The player's name has been edited"
-      redirect_to leagues_path
-    else
-      render edit_player_league_path
-    end
-  end
-
-  def edit_match
-    @match = Match.find(params[:id])
-  end
-
-  def update_match
-    @match = Match.find(params[:id])
-
-    if @match.update(
-        player1_id: @league.players.find_by(name: params[:player1_chosen]).id,
-        player2_id: @league.players.find_by(name: params[:player2_chosen]).id,
-        score1: params[:score1],
-        score2: params[:score2],
-        comment: params[:comment],
-      )
-      flash[:success] = "The match has been edited"
-      redirect_to leagues_path
-    else
-      render edit_match_league_path
-    end
-  end
-
   private
 
   def league_params
     params.require(:league).permit(:name, :sport)
-  end
-
-  def player_params
-    params.require(:player).permit(:name)
   end
 
   def set_league

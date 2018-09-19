@@ -1,0 +1,9 @@
+<div class='container'>
+  <h2>Name edition</h2>
+    <%= form_tag league_player_path, :method => :put do |f|%>
+        <div class = "form-group">
+          <%=text_field_tag :name, nil, { placeholder: "Player's new name", class: 'form-control' }%>
+        </div>
+        <%= submit_tag "Edit", class: "btn btn-primary" %>
+    <% end %>
+</div>

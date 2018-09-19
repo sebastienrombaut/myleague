@@ -15,7 +15,7 @@
           <td><%= player.name %></td>
           <td>
             <% if current_admin %>
-              <%= link_to edit_player_league_path(player) do %>
+              <%= link_to edit_league_player_path(player) do %>
                 <i class="fas fa-cog" data-toggle="tooltip" data-placement="top" title="Edit player" id='icon_league1'></i>
               <% end %>
              <% end %>
