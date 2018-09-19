@@ -8,11 +8,14 @@
         <th>Second Player</th>
         <th>Score</th>
         <th>Comment</th>
+        <% if current_admin %>
+          <th>Edit</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
         <% @matches.each do |match| %>
-      <tr>   
+      <tr>
         <td><%= match.created_at %></td>
         <% if match.winner != nil %>
           <% if match.winner.id == Player.find(match.player1_id).id %>
@@ -28,6 +31,13 @@
         <% end%>
         <td><%= "#{match.score1}" +' - '+"#{match.score2}" %></td>
         <td><%= match.comment %></td>
+        <% if current_admin %>
+          <td>
+            <%= link_to edit_league_match_path(match.id) do %>
+              <i class="fas fa-cog" data-toggle="tooltip" data-placement="top" title="Edit game" id='icon_league1'></i>
+            <% end %>
+          </td>
+        <% end %>
       <% end %>
       </tr>
     </tbody>

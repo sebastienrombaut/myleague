@@ -1,0 +1,30 @@
+<div class='container'>
+  <h2>Match edition</h2>
+    <%= form_tag league_match_path, :method => :put do |f|%>
+      <div class="row">
+        <div class="col-6">
+          Select first player <%= select_tag :player1_chosen, options_for_select(@tab_name)%></br>
+        </div>
+        <div class="col-6">
+          Select second player<%= select_tag :player2_chosen, options_for_select(@tab_name)%>
+        </div>
+        <div class="col-6">
+          </br>Enter score first player <%= number_field_tag :score1 %>
+        </div>
+        <div class="col-6">
+          </br>Enter score first player <%= number_field_tag :score2 %>
+        </div>
+        <div class="col-6">
+          </br>Any comments about the match ?
+        </div>
+        <div class="col-6">
+          </br><%= text_area_tag :comment %>
+        </div>
+        <% if admin_signed_in? %>
+          <div class="col-12">
+            </br><%= submit_tag "Edit this match", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+</div>

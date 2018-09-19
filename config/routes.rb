@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'matches/edit'
+
   root 'static_pages#home'
 
   # DEVISE
@@ -6,8 +8,8 @@ Rails.application.routes.draw do
 
   # RESOURCES
   resources :players, only: [:show]
-
   resources :leagues do
+    resources :matches, only: [:edit, :update]
     member do
       get 'joueurs', to: 'leagues#show_players', as: 'players'
       get 'display_players'
@@ -16,6 +18,12 @@ Rails.application.routes.draw do
       post 'new_match'
       get 'match_history'
       get 'leaderboard'
+      get 'edit_player'
+      put 'update_player'
+      patch 'update_player'
+      get 'edit_match'
+      put 'update_match'
+      patch 'update_match'
     end
   end
 end

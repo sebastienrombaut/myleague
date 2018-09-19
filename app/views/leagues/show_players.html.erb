@@ -1,17 +1,25 @@
 <div class="container">
-  <h2>In <%=@league.name%>, we have</h2>           
+  <h2>In <%=@league.name%>, we have</h2>
   <table class="table table-striped">
     <thead>
       <tr>
         <th>Player's name</th>
-        <th></th>
+        <% if current_admin %>
+          <th>Edit</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <% @players.each do |player|%>
-      <tr>      
+      <tr>
           <td><%= player.name %></td>
-          <td></td>
+          <td>
+            <% if current_admin %>
+              <%= link_to edit_player_league_path(player) do %>
+                <i class="fas fa-cog" data-toggle="tooltip" data-placement="top" title="Edit player" id='icon_league1'></i>
+              <% end %>
+             <% end %>
+          </td>
       <% end %>
       </tr>
     </tbody>
