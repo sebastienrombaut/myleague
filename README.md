@@ -1,5 +1,3 @@
-Methode dans model et pas controller
+Routes pas claires avec league_id et :id
 
-New Match in league or not ? 
-redirect afet sign in devise
-page qui reload 
+Resource show, show_historical ? pour players

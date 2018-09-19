@@ -1,2 +1,24 @@
-<h1>Players#show</h1>
-<p>Find me in app/views/players/show.html.erb</p>
+<div class="container">
+  <h2><%= @player.name %>'s history in <%= @league.name %></h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Vs</th>
+        <th>Wins</th>
+        <th>Draws</th>
+        <th>Losses</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @players_tab.each do |player| %>
+        <tr>
+          <td><%= @player.name %></td>
+          <td><%= player.name %></td>
+          <td><%= @player.total_victories_for_a_league_against_a_player(@league.id, player.id)%></td>
+          <td><%= @player.total_draws_for_a_league_against_a_player(@league.id, player.id)%></td>
+          <td><%= @player.total_defeats_for_a_league_against_a_player(@league.id, player.id)%></td>
+        </tr>
+      <% end %>
+    </tbody>
+</div>

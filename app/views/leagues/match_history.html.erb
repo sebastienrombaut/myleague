@@ -14,31 +14,49 @@
       </tr>
     </thead>
     <tbody>
-        <% @matches.each do |match| %>
-      <tr>
-        <td><%= match.created_at %></td>
-        <% if match.winner != nil %>
-          <% if match.winner.id == Player.find(match.player1_id).id %>
-            <td style='color: #228B22;'><%= Player.find(match.player1_id).name %></td>
-            <td style='color: #DC143C;'><%= Player.find(match.player2_id).name %></td>
-          <% else match.winner.id == Player.find(match.player2_id).id %>
-            <td style='color: #DC143C;'><%= Player.find(match.player1_id).name %></td>
-            <td style='color: #228B22;'><%= Player.find(match.player2_id).name %></td>
-          <% end %>
-        <% else %>
-          <td style='color: #FFA500;'><%= Player.find(match.player1_id).name %></td>
-          <td style='color: #FFA500;'><%= Player.find(match.player2_id).name %></td>
-        <% end%>
-        <td><%= "#{match.score1}" +' - '+"#{match.score2}" %></td>
-        <td><%= match.comment %></td>
-        <% if current_admin %>
-          <td>
-            <%= link_to edit_league_match_path(match.id) do %>
-              <i class="fas fa-cog" data-toggle="tooltip" data-placement="top" title="Edit game" id='icon_league1'></i>
+      <% @matches.each do |match| %>
+        <tr>
+          <td><%= match.created_at %></td>
+          <% if match.winner != nil %>
+            <% if match.winner.id == Player.find(match.player1_id).id %>
+              <td style='color: #228B22;'>
+                <%= link_to league_player_path(Player.find(match.player1_id).id) do %>
+                  <%= Player.find(match.player1_id).name %></td>
+                <% end %>
+              <td style='color: #DC143C;'>
+                <%= link_to league_player_path(Player.find(match.player2_id).id) do %>
+                  <%= Player.find(match.player2_id).name %></td>
+                <% end %>
+            <% else match.winner.id == Player.find(match.player2_id).id %>
+              <td style='color: #DC143C;'>
+                <%= link_to league_player_path(Player.find(match.player1_id).id) do %>
+                  <%= Player.find(match.player1_id).name %></td>
+                <% end %>
+              <td style='color: #228B22;'>
+                <%= link_to league_player_path(Player.find(match.player2_id).id) do %>
+                  <%= Player.find(match.player2_id).name %></td>
+                <% end %>
             <% end %>
-          </td>
-        <% end %>
+          <% else %>
+              <td style='color: #FFA500;'>
+                <%= link_to league_player_path(Player.find(match.player1_id).id) do %>
+                  <%= Player.find(match.player1_id).name %></td>
+                <% end %>
+              <td style='color: #FFA500;'>
+                <%= link_to league_player_path(Player.find(match.player2_id).id) do %>
+                  <%= Player.find(match.player2_id).name %></td>
+                <% end %>
+          <% end%>
+          <td><%= "#{match.score1}" +' - '+"#{match.score2}" %></td>
+          <td><%= match.comment %></td>
+          <% if current_admin %>
+            <td>
+              <%= link_to edit_league_match_path(match.id) do %>
+                <i class="fas fa-cog" data-toggle="tooltip" data-placement="top" title="Edit game" id='icon_league1'></i>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
-      </tr>
     </tbody>
 </div>

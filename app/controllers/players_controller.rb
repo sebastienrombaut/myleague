@@ -1,9 +1,6 @@
 class PlayersController < ApplicationController
   before_action :authenticate_admin!
 
-  def show
-  end
-
   def edit
     @player = Player.find(params[:league_id])
   end
@@ -16,5 +13,11 @@ class PlayersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def show
+    @player = Player.find(params[:league_id])
+    @league = League.find_by(name: params[:id])
+    @players_tab = @league.players - [@player]
   end
 end
