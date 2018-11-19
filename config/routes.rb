@@ -20,4 +20,6 @@ Rails.application.routes.draw do
       get 'leaderboard'
     end
   end
+
+  get "/robots.txt", to: "robots#index", as: :robots
 end
