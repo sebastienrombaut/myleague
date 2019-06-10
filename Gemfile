@@ -1,9 +1,5 @@
 source 'https://rubygems.org'
 
-# authentification
-# gem 'devise'
-# gem 'pundit'
-
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'coffee-rails'
 gem 'devise'
@@ -15,6 +11,7 @@ gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'best_in_place', github: 'bernat/best_in_place'
+gem 'devise-bootstrap-views', '~> 1.0'
 
 group :development, :test do
   gem 'byebug', '9.0.6', platform: :mri
