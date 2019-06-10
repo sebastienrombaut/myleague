@@ -15,6 +15,7 @@ gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'best_in_place', github: 'bernat/best_in_place'
+gem 'devise-bootstrap-views', '~> 1.1'
 
 group :development, :test do
   gem 'byebug', '9.0.6', platform: :mri
