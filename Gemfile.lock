@@ -287,7 +287,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   devise
-  devise-bootstrap-views (~> 1.1)
+  devise-bootstrap-views (~> 1.0)
   factory_bot_rails
   jbuilder
   jquery-rails
