@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap', '>= 4.3.1'
 gem 'coffee-rails'
-gem 'devise'
+gem 'devise', '>= 4.6.0'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'puma'
