@@ -147,7 +147,7 @@ input {
 }
 
 .iphone {
-    height: 550px;
+    height: 450px;
     width: auto;
 }
 
@@ -259,7 +259,6 @@ input {
   left: 0;
   margin: 0;
 
-
   background:
     /* top, transparent red, faked with gradient */
     linear-gradient(
@@ -274,18 +273,13 @@ background-position: center bottom;
   overflow: hidden;
 }
 
-
-
 .covcontent  {
     height: 100%;
 }
 
-
 #ctabis {
     margin: auto;
 }
-
-
 
 .MailChimp {
     padding: 5%;
@@ -296,7 +290,6 @@ background-position: center bottom;
     color: black;
     font-size: 2em;
 }
-
 
 /*footer */
 .footerend {
@@ -314,6 +307,5 @@ background-position: center bottom;
 }
 
 .foot p {
-        margin: auto;
+    margin: auto;
 }
-
