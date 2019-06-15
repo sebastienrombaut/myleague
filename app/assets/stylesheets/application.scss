@@ -15,6 +15,7 @@
  */
 
 @import "bootstrap";
+@import "commons";
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -54,12 +55,16 @@ a:hover, a:visited, a:link, a:active {
     color: white;
     margin:5px;
 
-
     &:hover {
         color:grey;
         text-decoration: none;
     }
 }
+
+.bg-dark {
+    background-color: rgba(0, 0, 0, 1) !important;
+}
+
 
 h2 {
     padding-bottom: 40px;
